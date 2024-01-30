@@ -43,6 +43,34 @@ gradle run
 
 And access it at <http://localhost:8080>.
 
+### To test locally as war
+
+To run locally as a war deployed into an application server you can use the
+gretty tasks:
+
+``` bash
+# executed as a background task 
+nohup gradle appStartWar &
+```
+
+This will deploy the constructed war into a Jetty server. To stop it:
+
+``` bash
+gradle appStop
+```
+
+There is also the posibility to run it using a Tomcat server instead with:
+
+``` bash
+nohup gradle tomcatStartWar &
+```
+
+And stop it with:
+
+``` bash
+gradle tomcatStop
+```
+
 ### To deploy with Docker
 
 The project contains a Dockerfile to create an image that runs the project by
