@@ -6,8 +6,16 @@ pluginManagement {
     }
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.id.startsWith("com.google.cloud.tools.appengine")) {
-                useModule("com.google.cloud.tools:appengine-gradle-plugin:${requested.version}")
+            when (requested.id.id) {
+                "org.jetbrains.kotlin.jvm" -> {
+                    val kotlin_version: String by settings
+                    useVersion(kotlin_version)
+                }
+
+                "io.ktor.plugin" -> {
+                    val ktor_version: String by settings
+                    useVersion(ktor_version)
+                }
             }
         }
     }

@@ -1,11 +1,10 @@
-val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
 
 plugins {
-    application
-    id("org.jetbrains.kotlin.jvm") version "2.0.0-Beta3"
+    id("org.jetbrains.kotlin.jvm")
     id("org.gretty") version "4.0.3"
+    id("io.ktor.plugin")
     id("war")
 }
 
@@ -22,11 +21,13 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
-    implementation("io.ktor:ktor-server-core:$ktor_version")
-    implementation("io.ktor:ktor-server-servlet-jakarta:$ktor_version")
+    testImplementation("org.jetbrains.kotlin:$kotlin_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
-    testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+
+    implementation("io.ktor:ktor-server-core")
+    implementation("io.ktor:ktor-server-servlet-jakarta")
+    implementation("io.ktor:ktor-server-status-pages")
+    testImplementation("io.ktor:ktor-server-test-host")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>().configureEach {
